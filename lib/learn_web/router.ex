@@ -22,6 +22,10 @@ defmodule LearnWeb.Router do
     get "/polls/new", PollController, :new
 
     resources "/users", UserController, only: [:new, :show, :create]
+    resources "/sessions", SessionController, only: [:create]
+
+    get "/login", SessionController, :new
+    get "/logout", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.

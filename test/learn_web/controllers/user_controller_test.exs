@@ -7,6 +7,13 @@ defmodule LearnWeb.UserControllerTest do
 
   doctest UserController
 
+  @create_params %{
+    "username" => "test",
+    "email" => "test@test.com",
+    "password" => "test",
+    "password_confirmation" => "test"
+  }
+
   test "module exists" do
     assert is_list(UserController.module_info())
   end
@@ -20,8 +27,7 @@ defmodule LearnWeb.UserControllerTest do
   end
 
   test "GET /users/:id", %{conn: conn} do
-    with {:ok, user} <- Learn.Accounts.create_user(%{"username" =>
-    "test", "email" => "test@test.com"}) do
+    with {:ok, user} <- Learn.Accounts.create_user(@create_params) do
       conn = get conn, "/users/#{user.id}"
       assert html_response(conn, 200) =~ user.username
     else
@@ -30,8 +36,7 @@ defmodule LearnWeb.UserControllerTest do
   end
 
   test "POST /users", %{conn: conn} do
-    user_params = %{"username" => "test", "email" => "test@test.com"}
-    conn = post conn, "/users", %{"user" => user_params}
+    conn = post conn, "/users", %{"user" => @create_params}
     assert redirected_to(conn) =~ "/users/"
   end
 end
