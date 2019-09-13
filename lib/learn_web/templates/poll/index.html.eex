@@ -1,0 +1,10 @@
+<h1>Polls now!</h1>
+
+<%= for poll <- @polls do %>
+    <h2>Poll: <%= poll.title %></h2>
+
+    <%= for option <- poll.options do %>
+     <strong><%= option.title %></strong>: <%= option.votes %> votes
+     <br />
+    <% end %>
+<% end %>
