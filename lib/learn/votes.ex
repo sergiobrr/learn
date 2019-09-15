@@ -11,6 +11,10 @@ defmodule Learn.Votes do
     Repo.all(Poll) |> Repo.preload(:options)
   end
 
+  def list_options do
+    Repo.all(Option) |> Repo.preload(:poll)
+  end
+
   def new_poll do
     Poll.changeset(%Poll{}, %{})
   end
@@ -49,6 +53,24 @@ defmodule Learn.Votes do
     %Option{}
     |> Option.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def get_user_polls(user_id) do
+    Repo.get_by(Poll, user_id: user_id)
+  end
+
+  def vote_on_option(option_id) do
+    with option <- Repo.get!(Option, option_id),
+      votes <- option.votes + 1
+    do
+      update_option(option, %{votes: votes})
+    end
+  end
+
+  def update_option(option, attrs) do
+    option
+    |> Option.changeset(attrs)
+    |> Repo.update()
   end
 
 end

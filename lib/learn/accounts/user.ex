@@ -8,6 +8,7 @@ defmodule Learn.Accounts.User do
   import Ecto.Changeset
 
   alias Learn.Accounts.User
+  alias Learn.Votes.Poll
 
   schema "users" do
     field :username, :string
@@ -17,6 +18,7 @@ defmodule Learn.Accounts.User do
 
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
+    has_many :polls, Poll
 
     timestamps()
   end
@@ -25,6 +27,8 @@ defmodule Learn.Accounts.User do
     user
     |> cast(attrs, [:username, :email, :active, :password, :password_confirmation])
     |> validate_confirmation(:password, message: "Passwords don't match")
+    |> unique_constraint(:username)
+    |> validate_format(:email, ~r/@/)
     |> encrypt_password()
     |> validate_required([:username, :email, :active, :encrypted_password])
   end

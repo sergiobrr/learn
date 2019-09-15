@@ -14,7 +14,26 @@
  <body>
    <div class="container">
      <header class="header">
-       <h4>Logo</h4>
+        <div class="row">
+            <div class="column">
+                <h3><a href="/">Logo</a></h3>
+            </div>
+            <div class="column">
+                <h4><a href="/polls">Polls</a></h4>
+            </div>
+            <div class="column">
+                <h4><a href="/polls/new">New poll</a></h4>
+            </div>
+            <div class="column">
+                <h4><a href="/login">Login</a></h4>
+            </div>
+            <div class="column">
+                <h4><a href="/logout">Logout</a></h4>
+            </div>
+            <div class="column">
+                <h4><a href="/users/new">New User</a></h4>
+            </div>
+        </div>
      </header>
 
      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

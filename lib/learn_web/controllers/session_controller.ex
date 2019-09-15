@@ -42,8 +42,4 @@ defmodule LearnWeb.SessionController do
     Bcrypt.check_pass(user, password, hash_key: :encrypted_password)
   end
 
-  defp delete_session(_) do
-    true
-  end
-
 end

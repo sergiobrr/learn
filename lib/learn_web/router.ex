@@ -23,7 +23,7 @@ defmodule LearnWeb.Router do
 
     resources "/users", UserController, only: [:new, :show, :create]
     resources "/sessions", SessionController, only: [:create]
-
+    get "/options/:id/vote", PollController, :vote
     get "/login", SessionController, :new
     get "/logout", SessionController, :delete
   end
