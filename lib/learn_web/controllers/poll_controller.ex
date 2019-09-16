@@ -42,4 +42,12 @@ defmodule LearnWeb.PollController do
         |> redirect(to: Routes.poll_path(conn, :new))
     end
   end
+
+  def show(conn, %{"id" => id}) do
+    with poll <- Votes.get_poll(id) do
+      conn
+      |> render("show.html", %{poll: poll})
+    end
+  end
+
 end

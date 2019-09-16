@@ -73,4 +73,8 @@ defmodule Learn.Votes do
     |> Repo.update()
   end
 
+  def get_poll(poll_id) do
+    Repo.get!(Poll, poll_id) |> Repo.preload(:options)
+  end
+
 end

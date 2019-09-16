@@ -17,13 +17,12 @@ defmodule LearnWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/polls", PollController, :index
-    post "/polls", PollController, :create
-    get "/polls/new", PollController, :new
 
+    resources "/polls", PollController, only: [:index, :new, :create, :show]
     resources "/users", UserController, only: [:new, :show, :create]
     resources "/sessions", SessionController, only: [:create]
     get "/options/:id/vote", PollController, :vote
+
     get "/login", SessionController, :new
     get "/logout", SessionController, :delete
   end
