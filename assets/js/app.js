@@ -10,7 +10,10 @@ import css from "../css/app.css"
 // Import dependencies
 //
 import "phoenix_html"
-// Import local files
-//
-// Local files can be imported directly using relative paths, for example:
 import socket from "./socket"
+// Import the polls channel code to enable live polling
+import LivePolls from "./poll";
+LivePolls.connect(socket);
+// // Import the Chat Socket code to enable chat
+import LiveChat from "./chat";
+LiveChat.connect(socket);
