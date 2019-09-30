@@ -1,30 +1,44 @@
 <div>
   <h1>CHAT</h1>
 </div>
-<br/><br/>
+<br/>
 <div class="chat-window container well"
     id="enable-chat-channel"
     data-chatroom="<%= @chatroom %>">
-  <div class="row col-md-12">
-    Your name:
-    <input type="text" class="form-control author-input" placeholder="Name" />
-  </div>
-  <div class="row col-md-12">
-    <h3>Chat</h3>
-    <ul class="list-unstyled chat-messages">
-      <%= for message <- @messages do %>
-        <li>
-            <span class="author">
-                &lt;<%= message.author %>&gt;
-            </span>
-            <span class="message">
-                <%= message.message %>
-            </span>
-        </li>
-      <% end %>
-    </ul>
-  </div>
   <div class="row">
+    <div class="col-sm-2">
+      <h4>Name:</h4>
+    </div>
+    <div class="col-sm-8 name-input">
+      <input type="text" class="form-control author-input" placeholder="Name" />
+    </div>
+    <div class="col-sm-2">
+      <button class="btn btn-primary join-chat">Join</button>
+    </div>
+  </div>
+  <div class="row chat-ui hidden">
+    <div class="col-sm-2 user-list">
+      <strong>Users</strong>
+      <ul class="username-list list-unstyled">
+        <li>User 1</li>
+        <li>User 2</li>
+        <li>User 3</li>
+        <li class="idle">User 4</li>
+        <li>Usernametha...</li>
+      </ul>
+    </div>
+    <div class="col-md-10 chat-display">
+      <strong>Messages</strong>
+      <ul class="list-unstyled chat-messages">
+        <%= for message <- @messages do %>
+          <li><span class="author">&lt;<%= message.author %>&gt;</span> <span class="message"><%= message.message %></span>
+        <% end %>
+        <li class="status">User 2 has left...</li>
+        <li class="status">User 3 is now away...</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row chat-ui hidden">
     <div class="col-md-10">
       <input type="text" class="form-control chat-input"/>
     </div>

@@ -11,7 +11,8 @@ defmodule Learn.Application do
       # Start the Ecto repository
       Learn.Repo,
       # Start the endpoint when the application starts
-      LearnWeb.Endpoint
+      LearnWeb.Endpoint,
+      LearnWeb.Presence,
       # Starts a worker by calling: Learn.Worker.start_link(arg)
       # {Learn.Worker, arg},
     ]
